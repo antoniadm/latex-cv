@@ -72,8 +72,8 @@
 
 % Set up Name
 \newcommand{\name}{%
-  {\color{black!15}\colorbox{black}{\huge{\@firstname}}\\%
-      \color{\@maincolor}\colorbox{black}{\Huge{\@lastname}} %
+  {\color{black!15}\colorbox{black!80}{\huge{\@firstname}} \\[-0.1\baselineskip]
+      \color{\@maincolor!80}\colorbox{black!80}{\Huge{\@lastname}}%
     }}
 
 % Set up Language
@@ -94,7 +94,7 @@
 \newcommand\infoHeader{
   \centerline{\small{\color{black!90}{\textbf{C} u r r i c u l u m \hspace{0.2cm} \textbf{V} i t a e}}}
   \begin{minipage}[t]{.5\textwidth}
-    \name \\[0.05cm]
+    \name \\[-0.1\baselineskip]
     \profession \\[0.05cm]
   \end{minipage}
   \begin{minipage}[t]{.5\textwidth}
