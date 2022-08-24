@@ -85,8 +85,7 @@
 \newcommand{\contact}{%
 \centering
 {\small \color{\@maincolor}{\faMapMarker} \color{black} \@address \hspace{0.1cm} \color{\@maincolor} \faMobile\ \color{black} \oldstylenums{\@mobile} \\  {\href{mailto:{\@mail}}{\color{\@maincolor}\faEnvelopeO \ \color{black} \@mail}}%
-\\%
-\linkedin \\ \github
+\\ \linkedin \\[-0.1\baselineskip] \github
 } %
 }
 
