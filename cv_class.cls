@@ -25,8 +25,7 @@
 \RequirePackage{bbding}
 \RequirePackage{multicol}
 %----------------------------------------
-% Needed to display current day
-\RequirePackage{datetime}
+
 % Needed to configure page margins
 \RequirePackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
 % Needed to manage hyperlinks
@@ -198,5 +197,5 @@
 \newcommand\daySource{%
   \vspace*{\fill}
   \centering
-  \rule[0.02cm]{15cm}{0.02cm}
-  \small{\today \hspace{5pt}\vpipe\hspace{4pt} {\href{https://github.com/antoniadm/latex-cv}{\color{blue}{source code}}}}}
+  \rule[0.02cm]{15cm}{0.02cm}\\
+  \small{ \today \hspace{5pt}\vpipe\hspace{4pt} {\href{https://github.com/antoniadm/latex-cv}{\color{blue}{source code}}}}}
