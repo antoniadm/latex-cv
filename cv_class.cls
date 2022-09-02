@@ -36,6 +36,8 @@
 \RequirePackage{titlesec}
 % Needed for example's dummy text
 \RequirePackage{lipsum}
+% Needed to display date
+\RequirePackage{datetime}
 % Needed to manage colors
 \RequirePackage[dvipsnames]{xcolor}
 % Needed to configure lines in sections
@@ -64,6 +66,10 @@
 % Configure the size of icons
 \renewcommand*{\faicon}[1]{\makebox[1.2em][c]{\csname faicon@#1\endcsname}}
 
+% Configure the date format
+\newdateformat{monthyeardate}{%
+  \monthname[\THEMONTH], \THEYEAR}
+  
 % Set up Linkedin link
 \newcommand{\linkedin}{\href{https://www.linkedin.com/in/\@linkedinaccount}{\color{blue}\faLinkedin\ \color{black} \small linkedin/in/\@linkedinaccount}}
 
@@ -76,7 +82,7 @@
       \color{\@maincolor!80}\colorbox{black!80}{\Huge{\@lastname}}%
     }}
 
-% Set up Language
+% Set up Profession
 \newcommand{\profession}{%
   \colorbox{\@maincolor!22}{\textbf{\small \@profession}}
 }
@@ -93,7 +99,7 @@
 \newcommand\infoHeader{
   \centerline{\small{\color{black!90}{\textbf{C} u r r i c u l u m \hspace{0.2cm} \textbf{V} i t a e}}}
   \begin{minipage}[t]{.5\textwidth}
-    \name \\[-0.1\baselineskip]
+    \name \\[-0.06\baselineskip]
     \profession \\[0.05cm]
   \end{minipage}
   \begin{minipage}[t]{.5\textwidth}
@@ -173,7 +179,7 @@
     \raggedleft\color{\@maincolor!70}
     \textit{#2}
   \end{minipage}
-  \indent \hspace{4ex}
+  \indent \hspace{6ex}
   \textit{\color{black}{#3}}
 }
 
@@ -197,4 +203,4 @@
   \vspace*{\fill}
   \centering
   \rule[0.02cm]{15cm}{0.02cm}\\
-  \small{ \today \hspace{5pt}\vpipe\hspace{4pt} {\href{https://github.com/antoniadm/latex-cv}{\color{blue}{source code}}}}}
+  \small{ \monthyeardate\today \hspace{5pt}\vpipe\hspace{4pt} {\href{https://github.com/antoniadm/latex-cv}{\color{blue}{source code}}}}}
