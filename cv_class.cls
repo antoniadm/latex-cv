@@ -25,9 +25,9 @@
 \RequirePackage{bbding}
 \RequirePackage{multicol}
 %----------------------------------------
-
 % Needed to configure page margins
 \RequirePackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\RequirePackage{changepage}
 % Needed to manage hyperlinks
 \RequirePackage{hyperref}
 % Needed to manage fonts
@@ -42,6 +42,20 @@
 \RequirePackage[dvipsnames]{xcolor}
 % Needed to configure lines in sections
 \RequirePackage{xhfill}
+
+\RequirePackage{tikz}
+\usetikzlibrary{fadings}
+\newcommand\fadingtext[3][]{%
+  \begin{tikzfadingfrompicture}[name=fading letter]
+    \node[text=transparent!0,inner xsep=0pt,outer xsep=0pt,#1] {#3};
+  \end{tikzfadingfrompicture}%
+  
+  \begin{tikzpicture}[baseline=(textnode.base)]
+    \node[inner sep=0pt,outer sep=0pt,#1](textnode){\phantom{#3}}; 
+    \shade[path fading=fading letter,#2,fit fading=false]
+    (textnode.south west) rectangle (textnode.north east);% 
+  \end{tikzpicture}% 
+}
 
 % Define the color of the hyperlinks-----
 \definecolor{linkColor}{RGB}{0, 0, 10}
@@ -73,19 +87,21 @@
 % Set up Linkedin link
 \newcommand{\linkedin}{\href{https://www.linkedin.com/in/\@linkedinaccount}{\color{blue}\faLinkedin\ \color{black} \small linkedin/in/\@linkedinaccount}}
 
-% Set up Gitjub link
+% Set up Github link
 \newcommand{\github}{\href{https://www.github.com/\@githubaccount}{\faGithub\ \small github/\@githubaccount}}
+
+%\fadingtext[scale=1]{top color=\@maincolor!22, bottom %color=\@maincolor!22}
 
 % Set up Name
 \newcommand{\name}{%
-  {\color{black!15}\colorbox{black!80}{\huge{\@firstname}} \\[-0.1\baselineskip]
-      \color{\@maincolor!80}\colorbox{black!80}{\Huge{\@lastname}}%
-    }}
+  \color{\@maincolor!80}{\colorbox{black!98!\@maincolor}{\huge{\@firstname}} \\[-0.1\baselineskip]
+  \color{\@maincolor!80}\colorbox{black!98!\@maincolor}{\Huge{\@lastname}}}%
+    }
 
 % Set up Profession
 \newcommand{\profession}{%
-  \colorbox{\@maincolor!22}{\textbf{\small \@profession}}
-}
+\color{black}{\colorbox{\@maincolor!22}{\textbf{\small\@profession}}
+}}
 
 % Set up Contact Info
 \newcommand{\contact}{%
@@ -97,13 +113,14 @@
 
 % Set up All Personal Info Header
 \newcommand\infoHeader{
-  \centerline{\small{\color{black!90}{\textbf{C} u r r i c u l u m \hspace{0.2cm} \textbf{V} i t a e}}}
+ \centerline{\small{\color{black!90}{\textbf{C} u r r i c u l u m \hspace{0.2cm} \textbf{V} i t a e}}}
   \begin{minipage}[t]{.5\textwidth}
+      \vspace{0.05cm}
     \name \\[-0.06\baselineskip]
     \profession \\[0.05cm]
   \end{minipage}
   \begin{minipage}[t]{.5\textwidth}
-    \vspace{0.5cm}
+    \vspace{0.55cm}
     \contact % address \ mobile \\ mail \\ linkedin \\ github
   \end{minipage}
 }
@@ -117,7 +134,7 @@
 %------------------------------
 
 \titleformat{\section} % Customise the \section command
-{\large\bfseries\scshape\raggedright\color{\@maincolor}}{}{0em} % Make the section headers large, small capitals and left aligned
+{\large\bfseries\raggedright\color{\@maincolor}}{}{0em} % Make the section headers large, small capitals and left aligned
 {\ruleafter} % Can be used to insert code before the heading
 \titlespacing*{\section}{-1pt}{0pt}{0pt} % Set title spacing
 
@@ -125,7 +142,8 @@
 \newcommand{\addSummary}[2]{%
   \section*{#1}
   \vspace{0.1cm}
-  \indent {\hspace{3.5ex} #2}
+\begin{adjustwidth}{0.6cm}{0cm} \indent {\hspace{3.5ex} #2}
+\end{adjustwidth}
 }
 
 % Adds education or experience with Date, Place and details if you want
@@ -133,7 +151,7 @@
 \newcommand{\uniOrJob}[4]{%
   \setlength\parindent{0pt}
   \begin{minipage}[t]{.8\textwidth}
-    \indent \hspace{3.5ex} \textbf{\large{\color{black}{#1}}}
+    \indent \hspace{2.5ex} \textbf{\large{\color{black}{#1}}}
   \end{minipage}
   \begin{minipage}[b]{.2\textwidth}
     \raggedleft\color{\@maincolor!70}
@@ -156,10 +174,10 @@
 
 % Adds Skills, \addSkill{1}{2} -- #1:Skills header, #2:Skills
 \newcommand{\addSkill}[2]{%
-  \begin{minipage}[t]{.28\textwidth}
+  \begin{minipage}[t]{.3\textwidth}
     \raggedleft \textbf{#1}
   \end{minipage}
-  \begin{minipage}[t]{.72\textwidth}
+  \begin{minipage}[t]{.7\textwidth}
     \hspace{7pt}#2
   \end{minipage}
 }
@@ -179,7 +197,7 @@
     \raggedleft\color{\@maincolor!70}
     \textit{#2}
   \end{minipage}
-  \indent \hspace{6ex}
+  \indent \hspace{4ex}
   \textit{\color{black}{#3}}
 }
 
